@@ -10,11 +10,6 @@ import { Products } from '../Products/Products'
 function Home(props) {
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(fetchProducts())
-
-  }, [dispatch])
-
 
 
   return (

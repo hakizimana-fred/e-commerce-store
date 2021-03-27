@@ -3,8 +3,10 @@ import { useSelector } from 'react-redux'
 import { Button, Navbar, Nav, Form, FormControl, Container } from 'react-bootstrap';
 import { ArrowRight, Cart, Person } from 'react-bootstrap-icons';
 
+
 const Navigationbar = () => {
 
+  const products = useSelector(state => state.products)
   return (
     <>
       <Navbar style={{ backgroundColor: '#070720' }}>
@@ -17,7 +19,7 @@ const Navigationbar = () => {
           </Nav>
           <Form inline>
 
-            <Nav.Link href="#" style={{ color: 'white' }}><Cart size={40} /> cart length</Nav.Link>
+            <Nav.Link href="#" style={{ color: 'white' }}><Cart size={40} />{products.length}</Nav.Link>
           </Form>
         </Container>
       </Navbar>
