@@ -1,23 +1,34 @@
-import React, {useEffect, useState} from 'react';
-import { Container, Row, Col, Card, Badge, Carousel} from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Container, Row, Col, Card, Badge, Carousel } from 'react-bootstrap';
 import Navigationbar from '../Navbar/Navbar'
 import Footer from '../Footer/Footer'
 import { db } from '../../Configurations'
 import Spinner from 'react-spinkit'
+import { fetchProducts } from '../../Redux/Actions/productsActions'
+import { useDispatch } from 'react-redux'
 function Home() {
-const [products, setProd] = useState("");
-  useEffect(()=>{
-  db.collection('Products')
-    .onSnapshot(snapshot =>
-        setProd(snapshot.docs.map(doc => (
-         { id: doc.id, title : doc.data().name , category: doc.data().category, price :
-            doc.data().price, image: doc.data().files })))
-      )} ,[]);
+  // const [products, setProd] = useState("");
+  // useEffect(() => {
+  //   db.collection('Products')
+  //     .onSnapshot(snapshot =>
+  //       setProd(snapshot.docs.map(doc => (
+  //         {
+  //           id: doc.id, title: doc.data().name, category: doc.data().category, price:
+  //             doc.data().price, image: doc.data().files
+  //         })))
+  //     )
+  // }, []);
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchProducts())
+  }, [])
 
 
-  return(
+  return (
     <>
-    <Navigationbar />
+      Home page
+      {/* <Navigationbar />
 
     <Container style={{marginTop: '20px'}}>
 
@@ -101,7 +112,7 @@ const [products, setProd] = useState("");
       </Col>
     </Row>
   </Container>
-  <Footer />
+  <Footer /> */}
     </>
   );
 }
