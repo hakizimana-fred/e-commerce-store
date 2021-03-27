@@ -7,12 +7,14 @@ import { fetchProducts } from '../../Redux/Actions/productsActions'
 import { useDispatch } from 'react-redux'
 import { Products } from '../Products/Products'
 
-function Home() {
+function Home(props) {
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(fetchProducts())
-  }, [])
+
+  }, [dispatch])
+
 
 
   return (
@@ -64,7 +66,7 @@ function Home() {
         </Carousel>
 
 
-        <Products />
+        <Products props={props} />
 
       </Container>
       <Footer />

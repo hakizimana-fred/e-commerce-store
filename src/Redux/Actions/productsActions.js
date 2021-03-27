@@ -12,8 +12,12 @@ export const fetchProducts = () => async (dispatch) => {
     products.get().then((doc) => {
 
         doc.forEach(d => {
-            dispatch(getProducts(d.data()))
-
+            const itemId = d.id
+            const items = {
+                itemId,
+                ...d.data()
+            }
+            dispatch(getProducts(items))
         })
 
     }).catch((error) => {
